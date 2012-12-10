@@ -68,5 +68,7 @@ public class MainActivity extends Activity {
     	t.setName(nameText.getText().toString());
     	t.setImageNumber((int)(Math.random()*10)+1);
     	taskList.addTask(t);
+    	final ListView lv1 = (ListView) findViewById(R.id.listV_main);
+        lv1.setAdapter(new ItemListBaseAdapter(this));
     }
 }
