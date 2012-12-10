@@ -1,4 +1,6 @@
-package com.example.tasklist;
+package il.ac.shenkar.tasklist;
+
+import com.example.tasklist.R;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -22,13 +24,4 @@ public class CreateTaskActivity extends Activity {
         return true;
     }
     
-    public void createTask(View view) {
-    	TaskList taskList = TaskList.getInstance();
-    	TaskDetails t = new TaskDetails();
-    	EditText nameText = (EditText) findViewById(R.id.editTextName);
-    	t.setName(nameText.getText().toString());
-    	t.setImageNumber(2);//(int)(Math.random()*10));
-    	taskList.addTask(t);
-    	finish();
-    }
 }
