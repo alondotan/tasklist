@@ -1,9 +1,6 @@
-package il.ac.shenkar.tasklist;
-
-import il.ac.shenkar.tasklist.R;
+package com.example.tasklist;
 
 import java.util.ArrayList;
-
 
 
 import android.app.Activity;
@@ -11,40 +8,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+
 
 public class MainActivity extends Activity {
 
 	TaskList taskList;
-
-	public static final String EXTRA_TASKNAME = "il.ac.shenkar.taskList.TASKNAME";
-	
-	 private static final String[] GROCERIES = new String[] {
-         "חלב", "ביצים", "חלב סויה", "גבינה צהובה", "עגבניות"
-     };
-	 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, GROCERIES);
-        
-        AutoCompleteTextView textView = (AutoCompleteTextView)
-                findViewById(R.id.editTextName);
-        textView.setAdapter(adapter);
-        
-        
-        taskList = TaskList.getInstance(this);
+        taskList = TaskList.getInstance();
                 
         final ListView lv1 = (ListView) findViewById(R.id.listV_main);
-        lv1.setAdapter(new ItemListBaseAdapter(this));
+        lv1.setAdapter(new ItemListBaseAdapter(this, taskList.getData()));
         
         lv1.setOnItemClickListener(new OnItemClickListener() {
     
@@ -59,21 +38,19 @@ public class MainActivity extends Activity {
     @Override
 	public void onResume() {
         super.onResume();
-        taskList = TaskList.getInstance(this);
+        taskList = TaskList.getInstance();
         final ListView lv1 = (ListView) findViewById(R.id.listV_main);
-    	EditText nameText = (EditText) findViewById(R.id.editTextName);
-    	nameText.setText("");
-    	
-        lv1.setAdapter(new ItemListBaseAdapter(this));
+        lv1.setAdapter(new ItemListBaseAdapter(this, taskList.getData()));
     }
+
     
-    public void createNewTask(View view) {
+    public void sendMessage(View view) {
     	Intent intent = new Intent(this, CreateTaskActivity.class);
-    	EditText editText = (EditText) findViewById(R.id.editTextName);
-    	
-    	String taskName = editText.getText().toString();
-    	
-    	intent.putExtra(EXTRA_TASKNAME, taskName);
     	startActivity(intent);
     }
+    
+	public void taskDone(View view){
+		
+		System.out.println("-------12222222222111111------");
+	}
 }

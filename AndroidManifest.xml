@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tasklist"
+    package="il.ac.shenkar.tasklist"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -23,6 +23,11 @@
             android:name="il.ac.shenkar.tasklist.CreateTaskActivity"
             android:label="@string/title_activity_create_task" >
         </activity>
+        <receiver android:name="il.ac.shenkar.tasklist.ReminderBroadCastReceiver">	
+			<intent-filter>	
+				<action android:name="il.ac.shenkar.tasklist.reminder_broadcast"/>	
+			</intent-filter>	
+		</receiver>
     </application>
 
 </manifest>
