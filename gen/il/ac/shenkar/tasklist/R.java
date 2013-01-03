@@ -27,16 +27,18 @@ public final class R {
         public static final int smiters=0x7f02000d;
     }
     public static final class id {
-        public static final int button=0x7f070008;
-        public static final int button1=0x7f070004;
+        public static final int button=0x7f07000a;
+        public static final int button1=0x7f070005;
+        public static final int button2=0x7f070006;
+        public static final int editTextDesc=0x7f070004;
         public static final int editTextName=0x7f070000;
         public static final int editTextRemindLabel=0x7f070001;
         public static final int editTextRemindLabel2=0x7f070003;
         public static final int editTextReminder=0x7f070002;
-        public static final int listV_main=0x7f070005;
-        public static final int menu_settings=0x7f070009;
-        public static final int name=0x7f070007;
-        public static final int photo=0x7f070006;
+        public static final int listV_main=0x7f070007;
+        public static final int menu_settings=0x7f07000b;
+        public static final int name=0x7f070009;
+        public static final int photo=0x7f070008;
     }
     public static final class layout {
         public static final int activity_create_task=0x7f030000;

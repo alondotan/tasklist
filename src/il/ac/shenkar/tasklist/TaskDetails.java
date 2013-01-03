@@ -8,17 +8,19 @@ public class TaskDetails {
 	private int imageNumber;
 	private int id;
 	private Time creationTime;
-
+	private String description;
+	
 	public TaskDetails(){
 		super();
 	}
 	
-	public TaskDetails(String name,int imageNumber,int id){
+	public TaskDetails(String name,int imageNumber,int id,String description){
 		super();
 		this.name = name;
 		this.imageNumber = imageNumber;
 		this.id = id;
 		this.creationTime = new Time();
+		this.description = description;
 	}
 	
 	public String getName() {
@@ -48,5 +50,12 @@ public class TaskDetails {
 	
 	public void setTime(Time time){
 		this.creationTime = time;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

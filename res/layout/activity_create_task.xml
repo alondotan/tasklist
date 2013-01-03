@@ -34,11 +34,22 @@
 	        android:layout_height="wrap_content"
 	        android:text=" days"/>     
     </LinearLayout>
-
-      <Button
+    <EditText
+        android:id="@+id/editTextDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="50" 
+        android:hint="Description"/>
+     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="create"
         android:onClick="createTask" />
+      <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="get random"
+        android:onClick="randomTask" />
 </LinearLayout>

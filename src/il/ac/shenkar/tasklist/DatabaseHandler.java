@@ -13,7 +13,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 	 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
  
     // Database Name
     private static final String DATABASE_NAME = "tasksManager";
@@ -25,7 +25,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
     private static final String KEY_IMG_NO = "image_number";
- 
+    private static final String KEY_DESC = "description";
+    
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -35,7 +36,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-                + KEY_IMG_NO + " INTEGER" + ")";
+                + KEY_IMG_NO + " INTEGER," + KEY_DESC + " TEXT " + ")";
         db.execSQL(CREATE_TASKS_TABLE);
     }
  
@@ -55,7 +56,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues  values = new ContentValues ();
         values.put(KEY_NAME, task.getName()); // task Name
         values.put(KEY_IMG_NO, task.getImageNumber()); // task image Number
-     
+        values.put(KEY_DESC, task.getDescription()); // task Name
+        
         // Inserting Row
         db.insert(TABLE_TASKS, null, values);
         db.close(); // Closing database connection
@@ -65,13 +67,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
      
         Cursor cursor = db.query(TABLE_TASKS, new String[] {KEY_IMG_NO ,
-                KEY_NAME, KEY_ID }, KEY_ID + "=?",
+                KEY_NAME, KEY_ID ,KEY_DESC }, KEY_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
      
         TaskDetails task = new TaskDetails(cursor.getString(1),
-        		Integer.parseInt(cursor.getString(0)),Integer.parseInt(cursor.getString(2)));
+        		Integer.parseInt(cursor.getString(0)),Integer.parseInt(cursor.getString(2)),cursor.getString(3));
         // return task
         return task;
     }
@@ -91,6 +93,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             	task.setId(Integer.parseInt(cursor.getString(0)));
             	task.setName(cursor.getString(1));
             	task.setImageNumber(Integer.parseInt(cursor.getString(2)));
+               	task.setDescription(cursor.getString(3));
                 // Adding task to list
             	tasksList.add(task);
             } while (cursor.moveToNext());
